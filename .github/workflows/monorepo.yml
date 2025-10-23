@@ -1,44 +1,27 @@
-name: Monorepo CI
+name: CI/CD
 
 on:
   push:
-    branches: [main, master]
+    branches:
+      - main
   pull_request:
-    branches: [main, master]
+    branches:
+      - main
 
 jobs:
-  build-web:
-    name: Build Web App
+  build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./apps/web
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Install dependencies (root)
-        run: npm install
-        working-directory: ../../
-      - name: Build web app
-        run: npm run build
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  build-admin:
-    name: Build Admin App
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./apps/admin
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - name: Install dependencies (root)
-        run: npm install
-        working-directory: ../../
-      - name: Build admin app
-        run: npm run build
+          node-version: '20' # Or your desired Node.js version
+
+      - name: Install dependencies
+        run: pnpm install # Or npm install / yarn install
+
+      - name: Build with Turborepo
+        run: turbo build
