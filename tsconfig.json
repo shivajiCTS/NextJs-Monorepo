@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "utils/*": ["packages/utils/*"]
+    }
+  },
+  "include": [
+    "packages/**/*",
+    "apps/**/*",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
+  ],
+  "exclude": ["npm_modules"]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "utils",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p dist && echo \"module.exports = { hello: () => 'hello from utils' }\" > dist/index.js && echo \"export const hello: () => string\" > dist/index.d.ts"
+  }
+}
